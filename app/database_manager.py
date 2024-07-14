@@ -8,7 +8,7 @@ class DB:
 
 
     def __connect_to_db_server__(self):
-        self.mydb = sqlite3.connect('mydb.db')
+        self.mydb = sqlite3.connect('mydb.db', check_same_thread=False)
     
     def __create_table__(self):
         mycursor = self.mydb.cursor()
@@ -32,8 +32,17 @@ class DB:
         myresult = mycursor.fetchall()
 
         return myresult
+    
+    def get_hub_ids(self):
+        mycursor = self.mydb.cursor()
+
+        mycursor.execute("SELECT DISTINCT hub_id FROM sensor_records")
+
+        myresult = mycursor.fetchall()
+
+        return myresult
 
 if __name__ == '__main__': 
     db = DB()
-    print(db.get_all_info())
+    print(db.get_hub_ids())
     
