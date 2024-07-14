@@ -39,7 +39,7 @@ class DB:
         mycursor.execute("SELECT DISTINCT hub_id FROM sensor_records")
 
         myresult = mycursor.fetchall()
-
+        myresult = [r[0] for r in myresult]
         return myresult
     
     def get_hub_records(self,hub_id):
@@ -48,7 +48,6 @@ class DB:
         mycursor.execute("SELECT * FROM sensor_records where hub_id = ?",[hub_id])
 
         myresult = mycursor.fetchall()
-
         return myresult
 
 if __name__ == '__main__': 
