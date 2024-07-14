@@ -41,6 +41,15 @@ class DB:
         myresult = mycursor.fetchall()
 
         return myresult
+    
+    def get_hub_records(self,hub_id):
+        mycursor = self.mydb.cursor()
+
+        mycursor.execute("SELECT * FROM sensor_records where hub_id = ?",[hub_id])
+
+        myresult = mycursor.fetchall()
+
+        return myresult
 
 if __name__ == '__main__': 
     db = DB()

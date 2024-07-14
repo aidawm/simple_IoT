@@ -19,7 +19,8 @@ class Reciever:
     def on_message(self,client, userdata, msg):
         print(f"Received message: {msg.payload.decode()} on topic {msg.topic}")
         temp , humi =  msg.payload.decode().split(" ")
-        self.db.new_record(msg.topic,float(temp),float(humi))
+        hub_id = msg.topic.split("/")[2]
+        self.db.new_record(hub_id,float(temp),float(humi))
 
     def on_connect(self,client, userdata, flags, rc,properties):
         if rc == 0:
