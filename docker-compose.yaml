@@ -1,0 +1,19 @@
+services:
+
+  mqtt_broker:
+    image: eclipse-mosquitto
+    restart: always 
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001
+
+  hub_simulator:
+    image: hub_simulator
+    volumes:
+      - ./app:/src
+    # command: chmod +x 'run_mqtt_publisher.sh' &&  sh -c 'run_mqtt_publisher.sh'
+ 

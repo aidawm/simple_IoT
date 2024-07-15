@@ -12,7 +12,7 @@ args = parser.parse_args()
 # MQTT broker details
 ### TODO:
 ### YOU SHOULD PROVIDE YOUR BROKER URL HERE
-broker = "localhost"
+broker = "mqtt_broker"
 port = 1883
 # hub_id = 0
 # sleep_duration = 1
@@ -20,7 +20,7 @@ print(f"command line args=> {args.hub_id}, {args.sleep_duration}")
 topic = f"sensor/data/{args.hub_id}"
 
 # Create an MQTT client instance
-client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+client = mqtt.Client()
 
 # Function to connect to the broker
 def connect_mqtt():
@@ -56,3 +56,4 @@ def publish(client):
 # Connect to the broker and start publishing
 client = connect_mqtt()
 publish(client)
+
