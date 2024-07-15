@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
+import HubSummary from './components/HubSummary';
 
 export type Hub = {
   hub_id: string
@@ -16,9 +17,9 @@ function App() {
       {
         hubs ? 
         hubs.map((hub) => {
-          return <p>{hub.hub_id}</p>
+         return <HubSummary hub={hub} />;
         }) : null
-      }</div>;
+      }</div>;  
 
 }
 
