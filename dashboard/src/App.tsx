@@ -9,7 +9,7 @@ export type Hub = {
 function App() {
   const [hubs, setHubs] = useState<Hub[] | null>(null);
   useEffect(() => {
-    const url = "/hub_list"
+    const url = "http://localhost:8000/hub_list"
     axios.get(url).then((response) => {setHubs(response.data);});
   }, []);
   return <div className="App">
