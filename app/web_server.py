@@ -28,4 +28,6 @@ def read_root():
 
 @app.get("/hub/{hub_id}")
 def read_item(hub_id: str):
-    return db.get_hub_records(hub_id)
+    info = db.get_hub_records(hub_id)
+    json_hubs = [{"id": i[0], "hub_id": i[1], "tempreture": i[2], "humidity": i[3], "timestamp": i[4] } for i in info]
+    return  json_hubs
