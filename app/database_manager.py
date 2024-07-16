@@ -1,5 +1,5 @@
 import sqlite3
-
+import os
 class DB:
     def __init__(self) -> None:
         self.__connect_to_db_server__()
@@ -8,7 +8,9 @@ class DB:
 
 
     def __connect_to_db_server__(self):
-        self.mydb = sqlite3.connect('mydb.db', check_same_thread=False)
+        db_path = '/data/mydb.db'
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
+        self.mydb = sqlite3.connect(db_path, check_same_thread=False)
     
     def __create_table__(self):
         mycursor = self.mydb.cursor()
