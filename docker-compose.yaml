@@ -16,4 +16,10 @@ services:
     volumes:
       - ./app:/src
     # command: chmod +x 'run_mqtt_publisher.sh' &&  sh -c 'run_mqtt_publisher.sh'
+
+
+  server: 
+    image: server
+    ports:
+      - 8000:8000
  

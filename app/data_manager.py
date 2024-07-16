@@ -7,12 +7,12 @@ class Reciever:
     def __init__(self) -> None:
         self.db = DB()
     
-        client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+        client = mqtt.Client()
 
         client.on_connect = self.on_connect
         client.on_message = self.on_message
 
-        client.connect("localhost", 1883, 60)
+        client.connect("mqtt_broker", 1883, 60)
 
         client.loop_forever()
 
@@ -22,7 +22,7 @@ class Reciever:
         hub_id = msg.topic.split("/")[2]
         self.db.new_record(hub_id,float(temp),float(humi))
 
-    def on_connect(self,client, userdata, flags, rc,properties):
+    def on_connect(self,client, userdata, flags, rc):
         if rc == 0:
             print("Connected successfully")
             client.subscribe("sensor/data/#")
