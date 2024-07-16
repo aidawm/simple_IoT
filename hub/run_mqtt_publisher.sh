@@ -16,7 +16,7 @@ do
     sleep_duration=$((RANDOM % 10 + 1))
     
     # Run the MQTT publisher Python script with the generated hub_id and sleep_duration
-    python hub_simulator.py "$hub_id" "$sleep_duration" &
+    python ./hub/hub_simulator.py "$hub_id" "$sleep_duration" &
 done
 
 # Wait for all background jobs to finish
