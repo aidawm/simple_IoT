@@ -22,4 +22,10 @@ services:
     image: server
     ports:
       - 8000:8000
+
+  dashboard:
+    image: dashboard
+    ports:
+      - 3000:3000
+  
  
