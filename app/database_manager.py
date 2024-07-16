@@ -13,14 +13,14 @@ class DB:
     def __create_table__(self):
         mycursor = self.mydb.cursor()
         mycursor.execute('''CREATE TABLE IF NOT EXISTS sensor_records
-             (id INTEGER PRIMARY KEY AUTOINCREMENT, hub_id VARCHAR(255), temperature FLOAT, humidity FLOAT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)''')
+             (id INTEGER PRIMARY KEY AUTOINCREMENT, hub_id VARCHAR(255), temperature FLOAT, humidity FLOAT, timestamp DATETIME)''')
 
-    def new_record(self,hub_id,tempreture,humidity):
+    def new_record(self,timestamp,hub_id,tempreture,humidity):
         mycursor = self.mydb.cursor()
 
-        sql = "INSERT INTO sensor_records (hub_id,temperature,humidity) VALUES (?,?,?)"
+        sql = "INSERT INTO sensor_records (hub_id,temperature,humidity,timestamp) VALUES (?,?,?,?)"
         print([hub_id,tempreture,humidity])
-        mycursor.execute(sql, [hub_id,tempreture,humidity])
+        mycursor.execute(sql, [hub_id,tempreture,humidity,timestamp])
 
         self.mydb.commit()
 
