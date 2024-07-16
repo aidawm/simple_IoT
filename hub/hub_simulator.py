@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 import random
 import argparse
+from datetime import datetime
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description='MQTT Publisher')
@@ -39,7 +40,7 @@ def publish(client):
     while True:
         temperature = round(random.uniform(20.0, 25.0), 2)
         humidity = round(random.uniform(30.0, 60.0), 2)
-        message = f"{temperature} {humidity}"
+        message = f"{datetime.now()} {temperature} {humidity}"
         
         result = client.publish(topic, message)
         

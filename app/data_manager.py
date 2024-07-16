@@ -18,9 +18,10 @@ class Reciever:
 
     def on_message(self,client, userdata, msg):
         print(f"Received message: {msg.payload.decode()} on topic {msg.topic}")
-        temp , humi =  msg.payload.decode().split(" ")
+        date, time, temp , humi =  msg.payload.decode().split(" ")
         hub_id = msg.topic.split("/")[2]
-        self.db.new_record(hub_id,float(temp),float(humi))
+        timestamp = date + time
+        self.db.new_record(timestamp, hub_id,float(temp),float(humi))
 
     def on_connect(self,client, userdata, flags, rc):
         if rc == 0:
